@@ -9,6 +9,7 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.ACL;
+import org.apache.zookeeper.data.Stat;
 
 /**
  * 
@@ -19,7 +20,7 @@ public class ZKNodeOperator implements Watcher {
 
 	private ZooKeeper zookeeper = null;
 	
-	public static final String zkServerPath = "192.168.1.110:2181";
+	public static final String zkServerPath = "47.104.189.193:2181";
 	public static final Integer timeout = 5000;
 	
 	public ZKNodeOperator() {}
@@ -62,10 +63,10 @@ public class ZKNodeOperator implements Watcher {
 			 * 			EPHEMERAL：临时节点
 			 * 			EPHEMERAL_SEQUENTIAL：临时顺序节点
 			 */
-			result = zookeeper.create(path, data, acls, CreateMode.PERSISTENT);
+//			result = zookeeper.create(path, data, acls, CreateMode.PERSISTENT);
 			
-//			String ctx = "{'create':'success'}";
-//			zookeeper.create(path, data, acls, CreateMode.PERSISTENT, new CreateCallBack(), ctx);
+			String ctx = "{'create':'success'}";
+			zookeeper.create(path, data, acls, CreateMode.PERSISTENT, new CreateCallBack(), ctx);
 			
 			System.out.println("创建节点：\t" + result + "\t成功...");
 			new Thread().sleep(2000);
@@ -86,7 +87,7 @@ public class ZKNodeOperator implements Watcher {
 		 * data：数据
 		 * version：数据状态
 		 */
-//		Stat status  = zkServer.getZookeeper().setData("/testnode", "xyz".getBytes(), 2);
+//		Stat status  = zkServer.getZookeeper().setData("/testnode", "xyz".getBytes(), 0);
 //		System.out.println(status.getVersion());
 		
 		/**
@@ -94,12 +95,12 @@ public class ZKNodeOperator implements Watcher {
 		 * path：节点路径
 		 * version：数据状态
 		 */
-		zkServer.createZKNode("/test-delete-node", "123".getBytes(), Ids.OPEN_ACL_UNSAFE);
-//		zkServer.getZookeeper().delete("/test-delete-node", 2);
+//		zkServer.createZKNode("/test-delete-node", "123".getBytes(), Ids.OPEN_ACL_UNSAFE);
+//		zkServer.getZookeeper().delete("/test-delete-node", 0);
 		
 		String ctx = "{'delete':'success'}";
 		zkServer.getZookeeper().delete("/test-delete-node", 0, new DeleteCallBack(), ctx);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 	}
 
 	public ZooKeeper getZookeeper() {
