@@ -17,7 +17,7 @@ public class ZKGetChildrenList implements Watcher {
 
 	private ZooKeeper zookeeper = null;
 	
-	public static final String zkServerPath = "192.168.1.110:2181";
+	public static final String zkServerPath = "47.104.189.193:2181";
 	public static final Integer timeout = 5000;
 	
 	public ZKGetChildrenList() {}
