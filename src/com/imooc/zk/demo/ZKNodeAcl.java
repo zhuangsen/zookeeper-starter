@@ -98,20 +98,20 @@ public class ZKNodeAcl implements Watcher {
 //		Stat stat = new Stat();
 //		byte[] data = zkServer.getZookeeper().getData("/aclimooc/testdigest", false, stat);
 //		System.out.println(new String(data));
-//		zkServer.getZookeeper().setData("/aclimooc/testdigest", "now".getBytes(), 1);
+//		zkServer.getZookeeper().setData("/aclimooc/testdigest", "now".getBytes(), 0);
 		
 		// ip方式的acl
 //		List<ACL> aclsIP = new ArrayList<ACL>();
-//		Id ipId1 = new Id("ip", "192.168.1.6");
+//		Id ipId1 = new Id("ip", "192.168.1.108");
 //		aclsIP.add(new ACL(Perms.ALL, ipId1));
 //		zkServer.createZKNode("/aclimooc/iptest6", "iptest".getBytes(), aclsIP);
 
 		// 验证ip是否有权限
 		zkServer.getZookeeper().setData("/aclimooc/iptest6", "now".getBytes(), 1);
-		Stat stat = new Stat();
-		byte[] data = zkServer.getZookeeper().getData("/aclimooc/iptest6", false, stat);
-		System.out.println(new String(data));
-		System.out.println(stat.getVersion());
+//		Stat stat = new Stat();
+//		byte[] data = zkServer.getZookeeper().getData("/aclimooc/iptest6", false, stat);
+//		System.out.println(new String(data));
+//		System.out.println(stat.getVersion());
 	}
 
 	public ZooKeeper getZookeeper() {
